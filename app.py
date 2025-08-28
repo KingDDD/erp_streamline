@@ -173,8 +173,8 @@ def aggregate_for_company(sess: Session, company_id: int):
 
 
 # ---------- Streamlit UI ----------
-st.set_page_config(page_title="BBH Holdings Tracker", layout="wide")
-st.title("BBH Holdings — Contracts & Financial Tracker (MVP)")
+st.set_page_config(page_title="BBH Tracker", layout="wide")
+st.title("BBH — Contracts & Financial Tracker (MVP)")
 
 sess = get_session()
 
@@ -185,10 +185,10 @@ if st.sidebar.button("Create default parent & subsidiaries (BBH, NGS, 3SM)"):
     # idempotent creation
     parent = sess.query(Company).filter_by(name="BBH").first()
     if parent is None:
-        parent = Company(name="BBH", is_parent=True)
+        parent = Company(name="Black Bear Holdings", is_parent=True)
         sess.add(parent)
         sess.commit()
-    for name in ("NGS", "3SM"):
+    for name in ("NexxusGovSec", "3SixMedia"):
         sub = sess.query(Subsidiary).filter_by(name=name).first()
         if sub is None:
             sub = Subsidiary(name=name, company_id=parent.id)
