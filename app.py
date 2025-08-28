@@ -120,7 +120,7 @@ class EquityAward(Base):
     contract = relationship("Contract", back_populates="equities")
 
 
-engine = create_engine("sqlite:///bbh_holdings.db", connect_args={"check_same_thread": False})
+engine = create_engine("sqlite:///black_bear_holdings.db", connect_args={"check_same_thread": False})
 Base.metadata.create_all(engine)
 SessionLocal = sessionmaker(bind=engine)
 
